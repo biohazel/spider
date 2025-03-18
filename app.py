@@ -27,7 +27,6 @@ def scrape():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-    # Lê o arquivo JSON gerado
     if not os.path.exists(output_file):
         return jsonify({"error": "No output generated"}), 500
 
@@ -40,6 +39,6 @@ def scrape():
     return jsonify({"results": data})
 
 if __name__ == "__main__":
-    # Para rodar no Render, usamos a var de ambiente PORT
+    # Para rodar no Render ou Heroku etc. Ajuste a porta conforme a config
     port = int(os.environ.get("PORT", 5000))
     app.run(debug=False, host="0.0.0.0", port=port)
